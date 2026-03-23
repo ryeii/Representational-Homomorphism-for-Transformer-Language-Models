@@ -39,7 +39,10 @@ from typing import Dict, List, Tuple
 import numpy as np
 import matplotlib.pyplot as plt
 
-from he_probe.experiment import run_all_experiments
+try:
+    from .experiment import run_all_experiments
+except ImportError:
+    from experiment import run_all_experiments
 
 
 # ---------------------------------------------------------------------
@@ -395,8 +398,8 @@ def main():
 
     # ---------------- Figure 6: accuracy vs modifier HE --------------------
     plot_noise_acc_vs_he(
-        noise_acc_dicts=noise_accs,
-        noise_he_mod_dicts=noise_he_mod,
+        noise_accs,
+        noise_he_mod,
         degrees=(1, 2, 3),
         fname="figure6_noise_acc_vs_he_poly",
         title="Noise: Accuracy vs Modifier HE",

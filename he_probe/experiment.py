@@ -4,9 +4,15 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader, Dataset
 import numpy as np
-from gen_data import generate_dataset
-from transformers import DecoderOnlyTransformer
-from he_metrics import compute_layerwise_he  # from your previous implementation
+
+try:
+    from .gen_data import generate_dataset
+    from .transformers import DecoderOnlyTransformer
+    from .he_metrics import compute_layerwise_he
+except ImportError:
+    from gen_data import generate_dataset
+    from transformers import DecoderOnlyTransformer
+    from he_metrics import compute_layerwise_he
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
